@@ -7,16 +7,16 @@ public class ConversionCalculator implements ActionListener, Runnable
     JFrame frame;
     JPanel mainPanel;
     JLabel label1, label2;
-    JTextField firstNameField, lastNameField;
+    JTextField initialUnitField, finalUnitField;
     JComboBox initialUnitBox;
     JComboBox finalUnitBox;
-    JButton printButton;
+    JButton convertButton;
     
     public void run()
     {
         // Create top-level container
         frame = new JFrame();
-        frame.setSize(700, 400);
+        frame.setSize(500, 170);
         frame.setLocation(100,100);
         frame.setTitle("Conversion Calculator");
         frame.setResizable(false);
@@ -27,19 +27,19 @@ public class ConversionCalculator implements ActionListener, Runnable
         frame.setContentPane(mainPanel);
         
         // Setup button
-        printButton = new JButton("Convert");
-        printButton.setMnemonic(KeyEvent.VK_P);
-        printButton.addActionListener(this);
+        convertButton = new JButton("Convert");
+        convertButton.setMnemonic(KeyEvent.VK_P);
+        convertButton.addActionListener(this);
 
         // Setup text fields and labels
         Font font1 = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
         
-        firstNameField = new JTextField();
+        initialUnitField = new JTextField();
         label1 = new JLabel("From:");
         label1.setFont(font1);
         label1.setHorizontalAlignment(JLabel.RIGHT);
 
-        lastNameField = new JTextField();
+        finalUnitField = new JTextField();
         label2 = new JLabel("To:");
         label2.setFont(font1);
         label2.setHorizontalAlignment(JLabel.RIGHT);
@@ -53,27 +53,27 @@ public class ConversionCalculator implements ActionListener, Runnable
         finalUnitBox.setSelectedIndex(0);
         
 
-        label1.setLocation(60, 10);
-        label2.setLocation(325, 10);
-        firstNameField.setLocation(120, 40);
-        lastNameField.setLocation(400, 40);
-        initialUnitBox.setLocation(120, 70);
-        finalUnitBox.setLocation(400,70);
-        printButton.setLocation(275, 40);
+        label1.setLocation(-30, 10);
+        label2.setLocation(235, 10);
+        initialUnitField.setLocation(30, 40);
+        finalUnitField.setLocation(310, 40);
+        initialUnitBox.setLocation(30, 70);
+        finalUnitBox.setLocation(310,70);
+        convertButton.setLocation(195, 40);
         
         label1.setSize(100, 30);
         label2.setSize(100, 30);
-        firstNameField.setSize(150, 20);
-        lastNameField.setSize(150, 20);
+        initialUnitField.setSize(150, 20);
+        finalUnitField.setSize(150, 20);
         initialUnitBox.setSize(150, 20);
         finalUnitBox.setSize(150, 20);
-        printButton.setSize(100, 30);
+        convertButton.setSize(100, 30);
         
         mainPanel.add(label1);
         mainPanel.add(label2);
-        mainPanel.add(firstNameField);
-        mainPanel.add(lastNameField);
-        mainPanel.add(printButton);
+        mainPanel.add(initialUnitField);
+        mainPanel.add(finalUnitField);
+        mainPanel.add(convertButton);
         mainPanel.add(initialUnitBox);
         mainPanel.add(finalUnitBox);
         
@@ -81,12 +81,16 @@ public class ConversionCalculator implements ActionListener, Runnable
     }
     
     public void actionPerformed(ActionEvent event)
-    {
-        if (event.getSource() == printButton)
+    {   
+        int meterValue = 0;
+        String[] units = {"Select Unit", "Kilometers", "Meters", "Centimeters", "Millimeters",
+            "Miles", "Yards", "Feet", "Inches", "Light Years"};
+        double[] meterConversionFactor = { 0.0 , 1000.0, 1.0, 0.01,0.001,
+            1609.334, 0.9144, 0.3048, 0.0254,9460700000000000.0};
+        if (event.getSource() == convertButton)
         {
         }
     }
-    
     public static void start() {
         SwingUtilities.invokeLater(new ConversionCalculator());
     }
